@@ -342,8 +342,10 @@ details[open] > p { animation: faq-in 0.3s ease; }
 }
 @keyframes grid-pan { to { background-position: 60px 60px, 60px 60px; } }
 
-/* the growth chart */
-.hero-chart { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: min(64%, 30rem); }
+/* the growth chart — sits behind the copy, anchored from the top so it aligns
+   with the text on every screen size (not pinned to the bottom) */
+.hero-chart { position: absolute; left: 0; right: 0; top: 4rem; height: 30rem; width: 100%; }
+@media (max-width: 1023px) { .hero-chart { top: 8.5rem; height: 30rem; } }
 .hero-chart .h-area { opacity: 0; animation: area-in 1.4s ease-out 1.1s forwards; }
 @keyframes area-in { to { opacity: 1; } }
 .hero-chart .h-line {

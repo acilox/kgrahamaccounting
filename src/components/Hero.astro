@@ -3,14 +3,18 @@ import { site } from '../data/site';
 ---
 
 <section id="top" class="relative overflow-hidden pt-28 pb-16 sm:pt-40 sm:pb-28">
-  <!-- Ambient finance backdrop: ledger grid + self-drawing growth chart -->
+  <!-- Ambient finance backdrop: ledger grid + two-tone growth area sitting behind the copy -->
   <div class="hero-bg" aria-hidden="true">
     <div class="hero-grid"></div>
-    <svg class="hero-chart" viewBox="0 0 1440 500" preserveAspectRatio="none">
+    <svg class="hero-chart" viewBox="0 0 1440 380" preserveAspectRatio="none">
       <defs>
-        <linearGradient id="heroArea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#12a37e" stop-opacity="0.20" />
+        <linearGradient id="heroAreaBack" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#12a37e" stop-opacity="0.16" />
           <stop offset="1" stop-color="#12a37e" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="heroAreaFront" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0d7a5f" stop-opacity="0.26" />
+          <stop offset="1" stop-color="#0d7a5f" stop-opacity="0" />
         </linearGradient>
         <linearGradient id="heroLine" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0" stop-color="#0d7a5f" />
@@ -19,14 +23,15 @@ import { site } from '../data/site';
         </linearGradient>
       </defs>
       <g class="h-float">
-        <path class="h-area" fill="url(#heroArea)"
-          d="M0,432 C180,418 300,412 470,372 S770,296 950,258 S1250,200 1440,166 L1440,500 L0,500 Z" />
-        <path class="h-line" stroke="url(#heroLine)"
-          d="M0,432 C180,418 300,412 470,372 S770,296 950,258 S1250,200 1440,166" />
-        <circle class="hero-node" cx="300" cy="412" r="5" fill="#12a37e" />
-        <circle class="hero-node n2" cx="700" cy="320" r="5" fill="#12a37e" />
-        <circle class="hero-node n3" cx="1050" cy="236" r="5" fill="#12a37e" />
-        <circle class="hero-node n4" cx="1400" cy="176" r="5" fill="#d6a441" />
+        <!-- back (lighter) shade -->
+        <path class="h-area" fill="url(#heroAreaBack)"
+          d="M0,262 C260,248 380,242 560,210 S900,124 1120,96 S1350,58 1440,46 L1440,380 L0,380 Z" />
+        <!-- front (deeper) shade -->
+        <path class="h-area" fill="url(#heroAreaFront)"
+          d="M0,300 C260,286 380,280 560,248 S900,160 1120,130 S1350,88 1440,74 L1440,380 L0,380 Z" />
+        <!-- crisp growth line on the top edge (non-scaling stroke keeps it clean on mobile) -->
+        <path class="h-line" stroke="url(#heroLine)" vector-effect="non-scaling-stroke"
+          d="M0,262 C260,248 380,242 560,210 S900,124 1120,96 S1350,58 1440,46" />
       </g>
     </svg>
     <div class="hero-wash"></div>
