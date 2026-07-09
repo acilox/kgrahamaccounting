@@ -203,6 +203,33 @@ const jsonLd = {
           });
         });
       })();
+
+      // Scrollspy — highlight the nav link for the section in view.
+      (function () {
+        const links = Array.from(document.querySelectorAll('[data-spy]'));
+        if (!links.length || !('IntersectionObserver' in window)) return;
+        const map = {};
+        links.forEach((l) => {
+          const id = l.getAttribute('data-spy');
+          const sec = document.getElementById(id);
+          if (sec) map[id] = l;
+        });
+        const setActive = (id) => {
+          links.forEach((l) => l.classList.toggle('active', l.getAttribute('data-spy') === id));
+        };
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) setActive(e.target.id);
+            });
+          },
+          { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+        );
+        Object.keys(map).forEach((id) => {
+          const sec = document.getElementById(id);
+          if (sec) io.observe(sec);
+        });
+      })();
     </script>
   </body>
 </html>

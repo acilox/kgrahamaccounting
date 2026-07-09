@@ -103,9 +103,15 @@ h1, h2, h3, h4 {
 /* ---------- Gradient / accent helpers ---------- */
 .text-gradient {
   background: linear-gradient(100deg, var(--color-emerald) 0%, var(--color-emerald-bright) 55%, var(--color-gold-bright) 115%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: gradient-shimmer 7s ease-in-out infinite;
+}
+@keyframes gradient-shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
 }
 
 .bg-hero-dark {
@@ -191,8 +197,47 @@ h1, h2, h3, h4 {
 .reveal-3 { transition-delay: 0.16s; }
 .reveal-4 { transition-delay: 0.24s; }
 
+/* ---------- Signature motion ---------- */
+/* Gentle float for the hero snapshot card */
+.floaty { animation: floaty 7s ease-in-out infinite; }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+/* Chart bars grow up when the hero enters (staggered) */
+.bar-grow { transform-origin: bottom; animation: bar-grow 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes bar-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.bar-grow:nth-child(1) { animation-delay: 0.15s; }
+.bar-grow:nth-child(2) { animation-delay: 0.27s; }
+.bar-grow:nth-child(3) { animation-delay: 0.39s; }
+.bar-grow:nth-child(4) { animation-delay: 0.51s; }
+.bar-grow:nth-child(5) { animation-delay: 0.63s; }
+.bar-grow:nth-child(6) { animation-delay: 0.75s; }
+
+/* Soft entrance for the hero copy + card on first paint */
+.rise-in { opacity: 0; animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.rise-in.delay-1 { animation-delay: 0.12s; }
+.rise-in.delay-2 { animation-delay: 0.24s; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+/* Icon badge lifts subtly on card hover */
+.card-hover:hover .icon-badge { transform: translateY(-2px) scale(1.05); }
+.icon-badge { transition: transform 0.22s ease; }
+
+/* Scrollspy: active nav link */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
+  background: var(--color-emerald); border-radius: 2px;
+  transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+.nav-link.active { color: var(--color-emerald); }
+
+/* Animated underline on text links */
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .floaty, .bar-grow, .rise-in, .text-gradient { animation: none !important; }
+  .rise-in { opacity: 1 !important; }
+  .bar-grow { transform: none !important; }
   html { scroll-behavior: auto; }
   [data-magnetic] { transform: none !important; }
 }

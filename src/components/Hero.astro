@@ -5,7 +5,7 @@ import { site } from '../data/site';
 <section id="top" class="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
   <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr]">
     <!-- Copy -->
-    <div class="reveal">
+    <div class="rise-in">
       <span class="chip mb-5">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
         Serving the DMV · Remote nationwide
@@ -31,30 +31,30 @@ import { site } from '../data/site';
       </div>
 
       <!-- Trust stats -->
-      <dl class="mt-11 grid max-w-lg grid-cols-3 gap-6 border-t border-[var(--color-mist)] pt-7">
+      <dl class="mt-11 grid max-w-lg grid-cols-3 gap-3 border-t border-[var(--color-mist)] pt-7 sm:gap-6">
         <div>
           <dt class="sr-only">Years of experience</dt>
-          <dd class="font-[var(--font-display)] text-3xl font-semibold text-[var(--color-navy)]">
+          <dd class="font-[var(--font-display)] text-2xl font-semibold text-[var(--color-navy)] sm:text-3xl">
             <span data-count="14" data-suffix="+">14+</span>
           </dd>
-          <p class="mt-1 text-sm text-[var(--color-slate)]">years in accounting &amp; audit</p>
+          <p class="mt-1 text-[13px] text-[var(--color-slate)] sm:text-sm">years in accounting &amp; audit</p>
         </div>
         <div>
           <dt class="sr-only">Specialization</dt>
-          <dd class="font-[var(--font-display)] text-3xl font-semibold text-[var(--color-navy)]">FAR<span class="text-[var(--color-gold)]">·</span>CAS</dd>
-          <p class="mt-1 text-sm text-[var(--color-slate)]">federal compliance fluent</p>
+          <dd class="font-[var(--font-display)] text-2xl font-semibold text-[var(--color-navy)] sm:text-3xl">FAR<span class="text-[var(--color-gold)]">·</span>CAS</dd>
+          <p class="mt-1 text-[13px] text-[var(--color-slate)] sm:text-sm">federal compliance fluent</p>
         </div>
         <div>
           <dt class="sr-only">Certification</dt>
-          <dd class="font-[var(--font-display)] text-3xl font-semibold text-[var(--color-navy)]">QB</dd>
-          <p class="mt-1 text-sm text-[var(--color-slate)]">Certified ProAdvisor</p>
+          <dd class="font-[var(--font-display)] text-2xl font-semibold text-[var(--color-navy)] sm:text-3xl">QB</dd>
+          <p class="mt-1 text-[13px] text-[var(--color-slate)] sm:text-sm">Certified ProAdvisor</p>
         </div>
       </dl>
     </div>
 
     <!-- Visual: audit-ready snapshot card -->
-    <div class="reveal reveal-2 relative">
-      <div class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-[var(--color-emerald-soft)] to-[var(--color-gold-soft)] opacity-60 blur-2xl"></div>
+    <div class="rise-in delay-1 relative">
+      <div class="floaty absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-[var(--color-emerald-soft)] to-[var(--color-gold-soft)] opacity-60 blur-2xl"></div>
       <div class="card overflow-hidden shadow-[0_40px_80px_-40px_rgba(11,27,48,0.4)]">
         <div class="flex items-center justify-between border-b border-[var(--color-mist)] bg-[var(--color-navy)] px-5 py-3.5">
           <span class="text-sm font-semibold text-white">Monthly Close — Q3</span>
@@ -84,7 +84,7 @@ import { site } from '../data/site';
             </div>
             <div class="flex h-24 items-end gap-2.5">
               {[42, 58, 50, 71, 64, 83].map((h) => (
-                <div class="flex-1 rounded-t-md bg-gradient-to-t from-[var(--color-emerald)] to-[var(--color-emerald-bright)]" style={`height:${h}%`}></div>
+                <div class="bar-grow flex-1 rounded-t-md bg-gradient-to-t from-[var(--color-emerald)] to-[var(--color-emerald-bright)]" style={`height:${h}%`}></div>
               ))}
             </div>
           </div>

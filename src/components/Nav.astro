@@ -32,7 +32,8 @@ const links = [
           <li>
             <a
               href={l.href}
-              class="text-sm font-medium text-[var(--color-slate)] transition-colors hover:text-[var(--color-emerald)]"
+              data-spy={l.href.slice(1)}
+              class="nav-link text-sm font-medium text-[var(--color-slate)] transition-colors hover:text-[var(--color-emerald)]"
             >
               {l.label}
             </a>
