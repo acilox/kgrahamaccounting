@@ -126,20 +126,28 @@ const jsonLd = {
         els.forEach((el) => io.observe(el));
       })();
 
-      // Count-up for stat numbers.
+      // Count-up for stat numbers (supports prefix, suffix, decimals, grouping).
       (function () {
         const nums = document.querySelectorAll('[data-count]');
         if (!nums.length) return;
+        const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const fmt = (n, decimals, group) => {
+          if (group) return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+          return decimals > 0 ? n.toFixed(decimals) : String(Math.round(n));
+        };
         const run = (el) => {
           const target = parseFloat(el.getAttribute('data-count'));
+          const prefix = el.getAttribute('data-prefix') || '';
           const suffix = el.getAttribute('data-suffix') || '';
-          const dur = 1400;
+          const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+          const group = el.hasAttribute('data-group');
+          if (rm) { el.textContent = prefix + fmt(target, decimals, group) + suffix; return; }
+          const dur = 1500;
           const start = performance.now();
           const step = (now) => {
             const p = Math.min((now - start) / dur, 1);
             const eased = 1 - Math.pow(1 - p, 3);
-            const val = target % 1 === 0 ? Math.round(target * eased) : (target * eased).toFixed(1);
-            el.textContent = val + suffix;
+            el.textContent = prefix + fmt(target * eased, decimals, group) + suffix;
             if (p < 1) requestAnimationFrame(step);
           };
           requestAnimationFrame(step);
@@ -228,6 +236,19 @@ const jsonLd = {
         Object.keys(map).forEach((id) => {
           const sec = document.getElementById(id);
           if (sec) io.observe(sec);
+        });
+      })();
+
+      // Cursor spotlight on dark sections (pointer-fine + reduced-motion aware).
+      (function () {
+        if (!window.matchMedia('(pointer:fine)').matches) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        document.querySelectorAll('.spotlight').forEach((el) => {
+          el.addEventListener('pointermove', (e) => {
+            const r = el.getBoundingClientRect();
+            el.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
+            el.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+          });
         });
       })();
     </script>
