@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1b30"/>
+      <stop offset="1" stop-color="#13294a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.12" r="0.6">
+      <stop offset="0" stop-color="#12a37e" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#12a37e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g font-family="Georgia, 'Times New Roman', serif">
+    <text x="90" y="250" fill="#8fb7ad" font-size="30" letter-spacing="6" font-family="Arial, sans-serif" font-weight="700">AUDIT-READY ACCOUNTING &amp; FEDERAL COMPLIANCE</text>
+    <text x="86" y="360" fill="#ffffff" font-size="92" font-weight="600">Fuel Your Growth,</text>
+    <text x="86" y="460" fill="#12a37e" font-size="92" font-weight="600">Not Your Paperwork.</text>
+    <text x="90" y="545" fill="#c3d0e0" font-size="34" font-family="Arial, sans-serif">K. Graham Accounting &amp; Advisory · Serving the DMV</text>
+  </g>
+  <g transform="translate(1010,80)">
+    <rect width="110" height="110" rx="24" fill="#0b1b30" stroke="#12a37e" stroke-width="2"/>
+    <path d="M34 28h10v24l21-24h13L55 52l22 30H64L48 57l-4 4.6V82H34z" fill="#12a37e"/>
+    <circle cx="76" cy="33" r="5" fill="#d6a441"/>
+  </g>
+</svg>

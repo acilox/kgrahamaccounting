@@ -1,0 +1,208 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/fraunces';
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'K. Graham Accounting & Advisory | Audit-Ready Accounting & Federal Compliance in the DMV',
+  description = 'Bookkeeping, payroll, tax & audit-ready financial reporting for small businesses, nonprofits & government contractors across DC, Maryland & Virginia. Federal grant/contract compliance (FAR, CAS, Uniform Guidance) and indirect cost rate expertise. QuickBooks ProAdvisor, 14+ years.',
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, ''); // normalize: no trailing slash
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+// JSON-LD — AccountingService + founder Person + Service list (playbook §5, pro-services).
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AccountingService',
+  '@id': `${Astro.site}#business`,
+  name: site.name,
+  description,
+  url: canonical,
+  telephone: site.phone,
+  email: site.email,
+  priceRange: '$$',
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Washington, DC' },
+    { '@type': 'State', name: 'Maryland' },
+    { '@type': 'State', name: 'Virginia' },
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.city,
+    addressRegion: site.region,
+    addressCountry: 'US',
+  },
+  founder: {
+    '@type': 'Person',
+    name: site.owner,
+    jobTitle: 'Founder & Principal Accountant',
+    description:
+      '14+ years in accounting, auditing, cost analysis and federal compliance. B.S. in Accounting (Rutgers), M.S. in Accounting & Information Systems, MBA. QuickBooks ProAdvisor.',
+  },
+  knowsAbout: [
+    'Bookkeeping',
+    'Payroll & multi-state compliance',
+    'Tax preparation',
+    'Audit-ready financial reporting',
+    'QuickBooks setup and cleanup',
+    'Federal grant and contract compliance (FAR, CAS, Uniform Guidance)',
+    'Indirect cost rate calculation and negotiation',
+    'Internal controls',
+  ],
+  sameAs: [site.socials.linkedin, site.socials.instagram, site.socials.facebook],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Unlisted while in testing — remove noindex at go-live/handoff. -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${base}/og.svg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${base}/og.svg`} />
+
+    <meta name="theme-color" content="#0b1b30" />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <div id="scrollBar" aria-hidden="true"></div>
+    <div class="field" aria-hidden="true">
+      <span class="orb orb--1"></span>
+      <span class="orb orb--2"></span>
+      <span class="orb orb--3"></span>
+    </div>
+
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-3 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg"
+      >Skip to content</a
+    >
+
+    <slot />
+
+    <script is:inline>
+      // Reveal-on-scroll (respects reduced-motion via CSS).
+      (function () {
+        const els = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window) || !els.length) {
+          els.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+        els.forEach((el) => io.observe(el));
+      })();
+
+      // Count-up for stat numbers.
+      (function () {
+        const nums = document.querySelectorAll('[data-count]');
+        if (!nums.length) return;
+        const run = (el) => {
+          const target = parseFloat(el.getAttribute('data-count'));
+          const suffix = el.getAttribute('data-suffix') || '';
+          const dur = 1400;
+          const start = performance.now();
+          const step = (now) => {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            const val = target % 1 === 0 ? Math.round(target * eased) : (target * eased).toFixed(1);
+            el.textContent = val + suffix;
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        };
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                run(e.target);
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+        nums.forEach((n) => io.observe(n));
+      })();
+
+      // Mobile nav toggle.
+      (function () {
+        const btn = document.getElementById('navToggle');
+        const menu = document.getElementById('mobileMenu');
+        if (!btn || !menu) return;
+        btn.addEventListener('click', () => {
+          const open = menu.classList.toggle('hidden') === false;
+          btn.setAttribute('aria-expanded', String(open));
+        });
+        menu.querySelectorAll('a').forEach((a) =>
+          a.addEventListener('click', () => menu.classList.add('hidden'))
+        );
+      })();
+
+      // Scroll progress bar + nav shadow.
+      (function () {
+        const bar = document.getElementById('scrollBar');
+        const nav = document.getElementById('siteNav');
+        const onScroll = () => {
+          const h = document.documentElement;
+          const max = h.scrollHeight - h.clientHeight;
+          const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+          if (bar) bar.style.width = pct + '%';
+          if (nav) nav.classList.toggle('scrolled', h.scrollTop > 12);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+
+      // Magnetic buttons (pointer only, respects reduced-motion).
+      (function () {
+        const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (rm || !window.matchMedia('(pointer:fine)').matches) return;
+        document.querySelectorAll('[data-magnetic]').forEach((el) => {
+          el.addEventListener('pointermove', (e) => {
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - r.left - r.width / 2;
+            const y = e.clientY - r.top - r.height / 2;
+            el.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+          });
+          el.addEventListener('pointerleave', () => {
+            el.style.transform = '';
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

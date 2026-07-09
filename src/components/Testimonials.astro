@@ -1,0 +1,53 @@
+---
+// ⚠️ DEMO TESTIMONIALS — placeholders written to show the layout. Before go-live,
+// replace with Kayon's REAL reviews (she has directory presence on Google, Clutch,
+// Yelp). Real name + photo + a specific outcome converts far better (playbook §7).
+const testimonials = [
+  {
+    quote:
+      'Our indirect rate was a mess and we were weeks from an audit. Kayon rebuilt our cost structure and walked us through it — we passed clean, no findings.',
+    name: 'Nonprofit Executive Director',
+    detail: 'Federally funded org · DMV',
+  },
+  {
+    quote:
+      'She untangled two years of neglected books in a month and set up QuickBooks the right way. For the first time I actually understand my numbers.',
+    name: 'Small Business Owner',
+    detail: 'Professional services firm',
+  },
+  {
+    quote:
+      'As a government contractor, compliance keeps me up at night. Having someone who thinks like an auditor on my side changed everything.',
+    name: 'Founder',
+    detail: 'Government contractor',
+  },
+];
+---
+
+<section aria-labelledby="reviews-heading" class="bg-[var(--color-navy)] py-20 text-white sm:py-24">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="reveal max-w-2xl">
+      <span class="eyebrow !text-[var(--color-gold-bright)]">What clients say</span>
+      <h2 id="reviews-heading" class="display-2 mt-3 !text-white">Trusted where compliance can't slip.</h2>
+    </div>
+
+    <div class="mt-12 grid gap-5 md:grid-cols-3">
+      {
+        testimonials.map((t, i) => (
+          <figure class={`reveal reveal-${(i % 3) + 1} flex flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6`}>
+            <div class="mb-3 flex gap-0.5 text-[var(--color-gold-bright)]" aria-label="5 out of 5 stars">
+              {[...Array(5)].map(() => (
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg>
+              ))}
+            </div>
+            <blockquote class="flex-1 text-[15px] leading-relaxed text-[#dbe6f3]">“{t.quote}”</blockquote>
+            <figcaption class="mt-5 border-t border-white/10 pt-4">
+              <p class="text-sm font-semibold text-white">{t.name}</p>
+              <p class="text-xs text-[#9fb2ca]">{t.detail}</p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

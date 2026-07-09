@@ -1,0 +1,106 @@
+---
+// ⚠️ DEMO PRICING — the numbers below are illustrative placeholders to show the
+// layout. Replace with Kayon's real package pricing before go-live, or switch to
+// "custom quote" if she prefers not to publish rates.
+const tiers = [
+  {
+    name: 'Essentials',
+    tagline: 'For solo operators & early-stage businesses',
+    price: '350',
+    period: '/mo',
+    highlight: false,
+    features: [
+      'Monthly bookkeeping & reconciliation',
+      'Financial statements you can read',
+      'QuickBooks setup & maintenance',
+      'Year-end tax-ready package',
+      'Email support',
+    ],
+    cta: 'Start with Essentials',
+  },
+  {
+    name: 'Growth',
+    tagline: 'For growing teams with payroll & planning needs',
+    price: '750',
+    period: '/mo',
+    highlight: true,
+    features: [
+      'Everything in Essentials',
+      'Payroll & multi-state compliance',
+      'Proactive tax planning',
+      'Quarterly strategy reviews',
+      'Internal controls guidance',
+      'Priority support',
+    ],
+    cta: 'Choose Growth',
+  },
+  {
+    name: 'Compliance',
+    tagline: 'For nonprofits & government contractors',
+    price: 'Custom',
+    period: '',
+    highlight: false,
+    features: [
+      'Everything in Growth',
+      'Federal compliance (FAR / CAS / 2 CFR 200)',
+      'Indirect cost rate development',
+      'Single-audit & incurred-cost readiness',
+      'Grant & fund accounting',
+      'Dedicated advisory',
+    ],
+    cta: 'Request a quote',
+  },
+];
+---
+
+<section id="pricing" class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+  <div class="reveal mx-auto max-w-2xl text-center">
+    <span class="eyebrow">Transparent pricing</span>
+    <h2 class="display-2 mt-3">Know the cost before you commit.</h2>
+    <p class="mt-4 text-lg text-[var(--color-slate)]">
+      Flat monthly packages — no hourly surprises. Every engagement is scoped on your
+      first call, so the price you agree to is the price you pay.
+    </p>
+  </div>
+
+  <div class="mt-12 grid gap-6 lg:grid-cols-3">
+    {
+      tiers.map((t, i) => (
+        <article
+          class={`reveal reveal-${(i % 3) + 1} relative flex flex-col rounded-2xl p-7 ${
+            t.highlight
+              ? 'bg-[var(--color-navy)] text-white shadow-[0_30px_60px_-30px_rgba(11,27,48,0.6)] ring-2 ring-[var(--color-emerald)]'
+              : 'card'
+          }`}
+        >
+          {t.highlight && (
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--color-gold)] px-3 py-1 text-xs font-semibold text-white">
+              Most popular
+            </span>
+          )}
+          <h3 class={`text-xl ${t.highlight ? '!text-white' : ''}`}>{t.name}</h3>
+          <p class={`mt-1 text-sm ${t.highlight ? 'text-[#9fb2ca]' : 'text-[var(--color-slate)]'}`}>{t.tagline}</p>
+          <p class="mt-5 flex items-baseline gap-1">
+            {t.price !== 'Custom' && <span class={`text-lg ${t.highlight ? 'text-[#9fb2ca]' : 'text-[var(--color-slate)]'}`}>from $</span>}
+            <span class={`font-[var(--font-display)] text-5xl font-semibold ${t.highlight ? '!text-white' : 'text-[var(--color-navy)]'}`}>{t.price}</span>
+            <span class={`${t.highlight ? 'text-[#9fb2ca]' : 'text-[var(--color-slate)]'}`}>{t.period}</span>
+          </p>
+          <ul class="mt-6 space-y-3">
+            {t.features.map((f) => (
+              <li class={`flex items-start gap-2.5 text-[15px] ${t.highlight ? 'text-[#dbe6f3]' : 'text-[var(--color-ink)]'}`}>
+                <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={t.highlight ? 'var(--color-emerald-bright)' : 'var(--color-emerald)'} stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a href="#book" class={`btn mt-7 w-full ${t.highlight ? 'btn-gold' : 'btn-outline'}`}>{t.cta}</a>
+        </article>
+      ))
+    }
+  </div>
+
+  <p class="reveal mx-auto mt-8 max-w-2xl text-center text-sm text-[var(--color-slate)]">
+    Prefer project or retainer-based work? That's available too — we'll recommend the
+    structure that fits your business on your free consultation.
+  </p>
+</section>

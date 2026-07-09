@@ -1,0 +1,58 @@
+---
+const capabilities = [
+  {
+    title: 'FAR & CAS Fluency',
+    body: 'Cost principles applied correctly the first time — allowable vs. unallowable, properly segregated and defensible.',
+  },
+  {
+    title: 'Uniform Guidance (2 CFR 200)',
+    body: 'Grant compliance, allowable-cost tracking and single-audit readiness for federally funded organizations.',
+  },
+  {
+    title: 'Indirect Cost Rates',
+    body: 'Fringe, overhead and G&A pools built, calculated and negotiated — and kept within your approved ceiling.',
+  },
+  {
+    title: 'Audit-Ready by Design',
+    body: 'Books structured the way auditors read them, so incurred-cost submissions and reviews go smoothly.',
+  },
+];
+---
+
+<section id="federal" class="bg-hero-dark relative overflow-hidden py-20 text-white sm:py-28">
+  <div class="grid-texture absolute inset-0 opacity-60" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div class="reveal">
+        <span class="eyebrow !text-[var(--color-gold-bright)]">The differentiator</span>
+        <h2 class="display-2 mt-3 !text-white">
+          A rare dual perspective: operator <span class="text-[var(--color-gold-bright)]">and</span> auditor.
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-[#c3d0e0]">
+          Most accountants can keep your books. Very few understand how a federal
+          auditor evaluates risk — and structure your finances accordingly from day
+          one. That combination is where funding is won, kept and protected.
+        </p>
+        <p class="mt-4 measure text-[#9fb2ca]">
+          If your organization touches federal grants or contracts, this is the
+          expertise that separates "compliant on paper" from "confident under audit."
+        </p>
+        <a href="#book" data-magnetic class="btn btn-gold mt-8 text-base">Talk about your compliance needs</a>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          capabilities.map((c, i) => (
+            <div class={`reveal reveal-${(i % 2) + 1} rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm`}>
+              <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-[rgba(214,164,65,0.15)] text-[var(--color-gold-bright)]">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+              </span>
+              <h3 class="mt-4 text-lg !text-white">{c.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-[#a9bad0]">{c.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,87 @@
+---
+const services = [
+  {
+    name: 'Bookkeeping & Accounting',
+    problem: 'Books that are always a month behind and never quite reconcile.',
+    solution:
+      'Monthly closes, clean reconciliations and financials you can actually read — delivered on a schedule you can set your calendar by.',
+    icon: '<path d="M4 4h16v16H4zM4 9h16M9 4v16"/>',
+  },
+  {
+    name: 'Payroll & Multi-State Compliance',
+    problem: 'Employees in three states and a growing pile of filing notices.',
+    solution:
+      'Accurate payroll, correct withholdings and multi-state registration and filings handled — so no jurisdiction ever gets a late notice.',
+    icon: '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>',
+  },
+  {
+    name: 'Tax Preparation & Planning',
+    problem: 'A surprise tax bill every April and no plan to lower it.',
+    solution:
+      'Business and personal returns prepared together, with proactive planning through the year to keep the bill predictable and as low as legally possible.',
+    icon: '<path d="M9 2h6l4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M9 12l2 2 4-4"/>',
+  },
+  {
+    name: 'Audit-Ready Financial Reporting',
+    problem: 'Panic every time an auditor, bank or funder asks for the books.',
+    solution:
+      'Documentation, controls and reporting maintained so your records pass scrutiny on the first pass — not after a scramble.',
+    icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/>',
+  },
+  {
+    name: 'QuickBooks Setup, Support & Cleanup',
+    problem: 'A QuickBooks file that’s more mess than ledger.',
+    solution:
+      'Certified ProAdvisor setup, cleanup of tangled histories and hands-on support so your file becomes a tool you trust — not a liability.',
+    icon: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+  },
+  {
+    name: 'Internal Controls & Systems',
+    problem: 'Growing fast with no guardrails on who touches the money.',
+    solution:
+      'Right-sized internal controls and financial systems that scale with you — reducing risk without slowing the business down.',
+    icon: '<path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6z"/><path d="M9 12l2 2 4-4"/>',
+  },
+];
+---
+
+<section id="services" class="relative bg-[var(--color-mist)]/40 py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="reveal max-w-2xl">
+      <span class="eyebrow">What we do</span>
+      <h2 class="display-2 mt-3">Full-service accounting, built to hold up.</h2>
+      <p class="mt-4 text-lg text-[var(--color-slate)]">
+        Every engagement is scoped to your business — but it always starts with books
+        that are accurate, documented and ready for anyone who needs to see them.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((s, i) => (
+          <article class={`card card-hover reveal reveal-${(i % 3) + 1} group flex flex-col p-6`}>
+            <span class="icon-badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
+            </span>
+            <h3 class="mt-4 text-xl">{s.name}</h3>
+            <p class="mt-3 flex items-start gap-2 text-sm text-[var(--color-slate)]">
+              <span class="mt-0.5 shrink-0 font-semibold text-[var(--color-gold)]">The problem</span>
+            </p>
+            <p class="mt-1 text-[15px] leading-relaxed text-[var(--color-slate)]">{s.problem}</p>
+            <p class="mt-3 flex items-start gap-2 text-sm">
+              <span class="mt-0.5 shrink-0 font-semibold text-[var(--color-emerald)]">How we fix it</span>
+            </p>
+            <p class="mt-1 text-[15px] leading-relaxed text-[var(--color-ink)]">{s.solution}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[var(--color-mist)] bg-white p-6">
+      <p class="text-[15px] text-[var(--color-slate)]">
+        <span class="font-semibold text-[var(--color-navy)]">Proof over promises.</span> Every deliverable is documented and reconciled — the kind of file an auditor can open without a heads-up.
+      </p>
+      <a href="#book" class="btn btn-primary !py-2.5 text-sm">Discuss your needs</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+---
+const steps = [
+  {
+    n: '01',
+    title: 'Discovery call',
+    body: 'A free 20-minute conversation about your business, your books today and what "sorted" would look like for you.',
+  },
+  {
+    n: '02',
+    title: 'Assessment & scope',
+    body: 'We review your current records, flag risks and gaps, and put a clear, fixed scope and price in front of you — no surprises.',
+  },
+  {
+    n: '03',
+    title: 'Cleanup & setup',
+    body: 'We get your books current, fix what’s broken and stand up the systems and controls your business actually needs.',
+  },
+  {
+    n: '04',
+    title: 'Ongoing partnership',
+    body: 'Monthly closes, proactive planning and audit-ready records — plus a real person who answers when you have a question.',
+  },
+];
+---
+
+<section id="process" class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+  <div class="reveal max-w-2xl">
+    <span class="eyebrow">How it works</span>
+    <h2 class="display-2 mt-3">From messy to audit-ready, without the mystery.</h2>
+    <p class="mt-4 text-lg text-[var(--color-slate)]">
+      A straightforward path with a fixed scope and a fixed price — so you always
+      know what happens next and what it costs.
+    </p>
+  </div>
+
+  <ol class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+    {
+      steps.map((s, i) => (
+        <li class={`card reveal reveal-${(i % 4) + 1} relative p-6`}>
+          <span class="font-[var(--font-display)] text-4xl font-semibold text-[var(--color-emerald-soft)]">{s.n}</span>
+          <h3 class="mt-2 text-lg">{s.title}</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-[var(--color-slate)]">{s.body}</p>
+          {i < steps.length - 1 && (
+            <span class="absolute right-4 top-7 hidden text-[var(--color-mist)] lg:block">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</section>

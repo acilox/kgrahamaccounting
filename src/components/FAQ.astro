@@ -1,0 +1,62 @@
+---
+const faqs = [
+  {
+    q: 'Do you work with clients outside the DC–Maryland–Virginia area?',
+    a: 'Yes. We’re based in Silver Spring, MD and know the DMV deeply, but the work is fully remote-friendly — we serve clients nationwide, especially those with federal grant or contract compliance needs.',
+  },
+  {
+    q: 'My books are a mess. Is that a problem?',
+    a: 'Not at all — cleanup is one of the most common ways clients start with us. We’ll assess the current state, get everything current and accurate, and set up systems so it stays that way.',
+  },
+  {
+    q: 'What makes you different from a typical bookkeeper?',
+    a: 'More than fourteen years on both sides of the ledger — keeping books and auditing them. That means your finances are built the way auditors and funders expect from the start, which is critical for nonprofits and government contractors.',
+  },
+  {
+    q: 'Can you handle federal grant and contract compliance?',
+    a: 'Yes — it’s our specialty. FAR, CAS and Uniform Guidance (2 CFR 200), indirect cost rate development and negotiation, single-audit and incurred-cost readiness are all core to what we do.',
+  },
+  {
+    q: 'Do you offer tax preparation as well as bookkeeping?',
+    a: 'We handle both business and personal tax preparation, and we plan proactively through the year so tax season is predictable rather than stressful.',
+  },
+  {
+    q: 'How does pricing work?',
+    a: 'Most clients are on a flat monthly package scoped to their needs, so there are no hourly surprises. Project-based and retainer arrangements are also available — we’ll recommend the right fit on your free consultation.',
+  },
+];
+
+// FAQPage JSON-LD (playbook §5) — rendered inline in this section.
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section id="faq" class="mx-auto max-w-4xl px-5 py-20 sm:px-8 sm:py-28">
+  <div class="reveal text-center">
+    <span class="eyebrow">Questions</span>
+    <h2 class="display-2 mt-3">Answers before you ask.</h2>
+  </div>
+
+  <div class="reveal mt-10 divide-y divide-[var(--color-mist)] overflow-hidden rounded-2xl border border-[var(--color-mist)] bg-white">
+    {
+      faqs.map((f) => (
+        <details class="group">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-[var(--color-navy)] transition-colors hover:bg-[var(--color-mist)]/40">
+            <span>{f.q}</span>
+            <svg class="shrink-0 text-[var(--color-emerald)] transition-transform group-open:rotate-45" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </summary>
+          <p class="px-6 pb-5 text-[15px] leading-relaxed text-[var(--color-slate)]">{f.a}</p>
+        </details>
+      ))
+    }
+  </div>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqLd)} />
+</section>

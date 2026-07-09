@@ -1,0 +1,60 @@
+---
+const audiences = [
+  {
+    title: 'Small Businesses',
+    body: 'Clean books, accurate payroll and a tax strategy that keeps more of what you earn — so you can run the business instead of chasing receipts.',
+    icon: '<path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/>',
+  },
+  {
+    title: 'Nonprofits',
+    body: 'Fund-accounting done right, board-ready financials and Form 990 support that keeps funders confident and your mission compliant.',
+    icon: '<path d="M12 21s-7-4.4-9.5-8.5C.8 9.4 2.2 5 6 5c2 0 3.2 1.2 4 2.3C10.8 6.2 12 5 14 5c3.8 0 5.2 4.4 3.5 7.5C19 16.6 12 21 12 21z"/>',
+  },
+  {
+    title: 'Government Contractors',
+    body: 'DCAA-minded accounting, incurred-cost readiness and indirect rate structures that hold up when the auditors arrive.',
+    icon: '<path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6"/>',
+  },
+  {
+    title: 'Federally Funded Organizations',
+    body: 'Uniform Guidance (2 CFR 200) compliance, allowable-cost tracking and single-audit preparation that protects your funding.',
+    icon: '<path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>',
+  },
+  {
+    title: 'Individuals & Founders',
+    body: 'Personal and business tax handled together, with proactive planning so April is a formality — not a fire drill.',
+    icon: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
+  },
+];
+---
+
+<section id="who" class="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+  <div class="reveal max-w-2xl">
+    <span class="eyebrow">Who we serve</span>
+    <h2 class="display-2 mt-3">Specialized where the stakes are highest.</h2>
+    <p class="mt-4 text-lg text-[var(--color-slate)]">
+      Compliance-heavy work is where most bookkeepers get nervous — and where we do
+      our best work. If auditors, funders or the government are watching your books,
+      you're in the right place.
+    </p>
+  </div>
+
+  <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      audiences.map((a, i) => (
+        <article class={`card card-hover reveal reveal-${(i % 3) + 1} p-6`}>
+          <span class="icon-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={a.icon} />
+          </span>
+          <h3 class="mt-4 text-xl">{a.title}</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-[var(--color-slate)]">{a.body}</p>
+        </article>
+      ))
+    }
+    <article class="reveal reveal-3 flex flex-col justify-center rounded-[1.25rem] bg-[var(--color-navy)] p-6 text-white">
+      <p class="font-[var(--font-display)] text-xl leading-snug">Not sure if you fit?</p>
+      <p class="mt-2 text-[15px] text-[#c3d0e0]">A 20-minute call is the fastest way to find out. No pressure, no jargon.</p>
+      <a href="#book" class="btn btn-gold mt-5 self-start !py-2.5 text-sm">Book a free consult</a>
+    </article>
+  </div>
+</section>
